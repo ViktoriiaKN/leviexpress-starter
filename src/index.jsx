@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Children } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom';
 import { App } from './components/App';
 import './global.css';
+import { HomePage } from './pages/HomePage';
 
 const router = createBrowserRouter([
   {
