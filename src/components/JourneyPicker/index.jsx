@@ -57,7 +57,15 @@ export const JourneyPicker = ({ onJourneyChange }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(`${fromCity}, ${toCity}, ${date}`);
+    const fetchResult = async () => {
+      const resp = await fetch(
+        `https://apps.kodim.cz/daweb/leviexpress/api/journey?fromCity=${fromCity}&toCity=${toCity}&date=${date}`
+      );
+      const data = await resp.json();
+      onJourneyChange(data.results)
+    };
+    fetchResult();
+    
   }
 
   return (
@@ -93,7 +101,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
             </select>
           </label>
           <div className="journey-picker__controls">
-            <button className="btn" type="submit">
+            <button className="btn" type="submit" disabled={!fromCity || !toCity || !date} onClick={handleSubmit}>
               Vyhledat spoj
             </button>
           </div>
