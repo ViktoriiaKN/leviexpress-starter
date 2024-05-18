@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 
-function handleSubmit(event) {
-  event.preventDefault();
-  console.log('Odesílám formulář s cestou ');
-}
 
 export const JourneyPicker = ({ onJourneyChange }) => {
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
   const [date, setDate] = useState('');
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(`${fromCity}, ${toCity}, ${date}`);
+  }
   
  return(<div className="journey-picker container">
     <h2 className="journey-picker__head">Kam chcete jet?</h2>
@@ -18,7 +18,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
       <form className="journey-picker__form" onSubmit={handleSubmit}>
         <label>
           <div className="journey-picker__label">Odkud:</div>
-          <select>
+         <select onChange={(event) => setFromCity(event.target.value)} value={fromCity}>
             <option value="">Vyberte</option>
             <option value="mesto01">Město 01</option>
             <option value="mesto02">Město 02</option>
@@ -29,7 +29,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
         </label>
         <label>
           <div className="journey-picker__label">Kam:</div>
-          <select>
+          <select onChange={(event) => setToCity(event.target.value)} value={toCity}>
             <option value="">Vyberte</option>
             <option value="mesto01">Město 01</option>
             <option value="mesto02">Město 02</option>
@@ -40,7 +40,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
         </label>
         <label>
           <div className="journey-picker__label">Datum:</div>
-          <select>
+          <select onChange={(event) => setDate(event.target.value)} value={date}>
             <option value="">Vyberte</option>
             <option value="datum01">Datum 01</option>
             <option value="datum02">Datum 02</option>
