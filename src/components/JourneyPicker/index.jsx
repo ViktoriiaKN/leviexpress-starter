@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 
-export const JourneyPicker = ({ onJourneyChange }) => (
-  <div className="journey-picker container">
+function handleSubmit(event) {
+  event.preventDefault();
+  console.log('Odesílám formulář s cestou ');
+}
+
+export const JourneyPicker = ({ onJourneyChange }) => {
+  const [fromCity, setFromCity] = useState('');
+  const [toCity, setToCity] = useState('');
+  const [date, setDate] = useState('');
+
+  
+ return(<div className="journey-picker container">
     <h2 className="journey-picker__head">Kam chcete jet?</h2>
     <div className="journey-picker__body">
-      <form className="journey-picker__form">
+      <form className="journey-picker__form" onSubmit={handleSubmit}>
         <label>
           <div className="journey-picker__label">Odkud:</div>
           <select>
@@ -51,4 +61,4 @@ export const JourneyPicker = ({ onJourneyChange }) => (
       <img className="journey-picker__map" src="/map.svg" />
     </div>
   </div>
-);
+)};
