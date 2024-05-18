@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './style.css';
 
 const CityOptions = ({cities}) => {
-  console.log(cities);
   return (
     <>
       <option value="">Vyberte</option>
